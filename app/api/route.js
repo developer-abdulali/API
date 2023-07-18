@@ -1,21 +1,28 @@
-
 // GET method of API
+const { NextResponse } = require("next/server");
 
-import { NextResponse } from "next/server";
+const data = [{ name: "Ali", class: "CNC" },{ name: "Mubashir", class: "CNC" }]
 
-// const { NextResponse } = require("next/server");
-
-// export async function GET(){
-//     return(
-//         NextResponse.json({name : "Ali", class : "CNC"})
-//     )
-// }
-
-
-
-// POST method of API
-
-export async function POST(req){
+export async function GET(req) {
+  const url = req.nextUrl.searchParams.get('employeeName');
+  return NextResponse.json(data.filter((d)=>{
+    
+    console.log(d, "d")
+  }));
+}
+export async function POST(req) {
   const request = await req.json()
-    return NextResponse.json([request])
+  data.push(request)
+  return NextResponse.json(data);
+}
+export async function PUT(req) {
+  const request = await req.json();
+  return NextResponse.json([request]);
+}
+export async function PATCH(req) {
+  const request = await req.json();
+  return NextResponse.json([request]);
+}
+export async function DELETE(req) {
+  return NextResponse.json({});
 }
