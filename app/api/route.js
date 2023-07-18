@@ -5,10 +5,13 @@ const data = [{ name: "Ali", class: "CNC" },{ name: "Mubashir", class: "CNC" }]
 
 export async function GET(req) {
   const url = req.nextUrl.searchParams.get('employeeName');
-  return NextResponse.json(data.filter((d)=>{
-    
-    console.log(d, "d")
-  }));
+  const newData = data.filter((d) => {
+    return(
+      d.name == url && d
+    )
+  });
+  console.log(newData, "new data")
+  return NextResponse.json(newData)
 }
 export async function POST(req) {
   const request = await req.json()
